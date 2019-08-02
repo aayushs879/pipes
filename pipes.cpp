@@ -115,7 +115,7 @@ bool is_connected(int i, int j, string dir){
 		return false;
 	}
 	if (dir == "up"){
-		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4){
+		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4 || mat[i][j] == 7){
 			if (mat[i-1][j] == 1 || mat[i-1][j]== 2 || mat[i-1][j] == 5 || mat[i-1][j] == 6){
 				return true;
 			}
@@ -123,7 +123,7 @@ bool is_connected(int i, int j, string dir){
 	}
 	else if (dir == "down"){
 		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 5 || mat[i][j] == 6){
-			if (mat[i+1][j] == 1 || mat[i+1][j] == 2 || mat[i+1][j] == 4){
+			if (mat[i+1][j] == 1 || mat[i+1][j] == 2 || mat[i+1][j] == 4 || mat[i+1][j] == 7){
 				return true;
 			}
 		}
@@ -161,6 +161,7 @@ void solve(){
 	
 	int count = 0;
 	q.push(x, y, L-1);
+	visited[x][y] = true;
 	while (!q.isEmpty()){
 		node d = q.pop();
 		x = d.x;
@@ -169,24 +170,27 @@ void solve(){
 		if (mat[x][y] == 0){
 		    break;
 		}
-		count++;
-		visited[x][y] = true;
+		
+		count+= 1;
 		if (l>0){
+		    
     		if(is_connected(x, y, "up")&& !visited[x-1][y]){
     			q.push(x-1, y, l-1);
+    			visited[x-1][y] = true;
     		
     		}
     		if(is_connected(x, y, "down")&& !visited[x+1][y]){
     			q.push(x+1, y, l-1);
-    		
+    		    visited[x+1][y] = true;
     		}
     		if(is_connected(x, y, "right")&& !visited[x][y+1]){
     			q.push(x, y+1, l-1);
+    			visited[x][y+1] = true;
     		
     		}
     		if(is_connected(x, y, "left")&& !visited[x][y-1]){
     			q.push(x, y-1, l-1);
-    		
+    		    visited[x][y-1] = true;
     		}
 		}
 
