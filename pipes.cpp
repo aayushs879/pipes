@@ -151,9 +151,9 @@ void solve(){
 		for (int j = 0; j < n; j++){
 			cin>>mat[i][j];
 			visited[i][j] = false;
-			cout <<mat[i][j];
+		
 		}
-		cout<<endl;
+		
 	}
 
 
@@ -166,19 +166,28 @@ void solve(){
 		x = d.x;
 		y = d.y;
 		int l = d.l;
-		count ++;
+		if (mat[x][y] == 0){
+		    break;
+		}
+		count++;
 		visited[x][y] = true;
-		if(is_connected(x, y, "up")&& !visited[x-1][y]){
-			q.push(x-1, y, l-1);
-		}
-		if(is_connected(x, y, "down")&& !visited[x+1][y]){
-			q.push(x+1, y, l-1);
-		}
-		if(is_connected(x, y, "right")&& !visited[x][y+1]){
-			q.push(x, y+1, l-1);
-		}
-		if(is_connected(x, y, "left")&& !visited[x][y-1]){
-			q.push(x, y-1, l-1);
+		if (l>0){
+    		if(is_connected(x, y, "up")&& !visited[x-1][y]){
+    			q.push(x-1, y, l-1);
+    		
+    		}
+    		if(is_connected(x, y, "down")&& !visited[x+1][y]){
+    			q.push(x+1, y, l-1);
+    		
+    		}
+    		if(is_connected(x, y, "right")&& !visited[x][y+1]){
+    			q.push(x, y+1, l-1);
+    		
+    		}
+    		if(is_connected(x, y, "left")&& !visited[x][y-1]){
+    			q.push(x, y-1, l-1);
+    		
+    		}
 		}
 
 	}
