@@ -1,3 +1,23 @@
+/*
+below is a sample input for the code
+
+1
+8 3
+2 2
+2 8
+7 8
+1 1 0 0 0 0 0 0 
+1 1 0 0 1 1 1 1
+1 1 0 0 1 0 0 0
+1 1 1 1 1 0 0 0 
+0 1 0 0 1 0 0 0
+0 1 0 0 1 0 0 0
+0 1 0 0 1 1 1 1
+0 1 0 0 0 0 0 0
+
+ */
+
+
 #include <iostream>
 using namespace std;
 int mat[21][21];
