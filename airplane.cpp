@@ -28,7 +28,7 @@ void undet(int r){
 
 
 //exhaust all moves to see what works
-void go (int n, int pos, int c, int & ans){
+void go (int n, int pos, int c, int & ans){ //pass the ans shit by reference so c++ doesnt create a copy of that during each recursive step
     if (pos < 0 || pos >4 || c ==-1){ // c= -1 condition is important as we're not gonna go ahead if the coins become -1 at any instant of time
         return;
     }
