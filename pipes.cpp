@@ -1,24 +1,28 @@
 #include <iostream>
 using namespace std;
-int mat[50][50];
-bool visited[50][50];
+int mat[50][50]; // the global variable for the matrix to store the inputs
+bool visited[50][50]; // a boolean array to store if the pipe is visited or not
 int L;
 int m, n;
 int x, y;
 
+
+// a node structure which stores the co-ordinates of a pipe and the corresponding length of the tool used up to reach there
 struct node{
 	int x;
 	int y;
 	int l;
-	node(int a, int b, int c){
+	node(int a, int b, int c){ //node constructor
 	    x = a;
 	    y = b;
 	    l = c;
 	}
-	node(){}
+	node(){}// default constructor
 
 };
 
+
+//a structure to make a linked list of the node structure that we have created so we can create a queue out of it later
 struct ll{
 	node data;
 	ll* next;
@@ -28,6 +32,8 @@ struct ll{
 	}
 };
 
+
+//linked list implementation of the queue
 class queue{
 	int size;
 	ll * front;
@@ -72,19 +78,20 @@ void queue::push(int a, int b, int c){
 		back -> next = temp;
 		back = temp;
 	}
-	size++;
+	size++; //keep track of this shit
 }
 
 node queue::pop(){
 	node d = front ->data;
 	ll * temp = front-> next;
-	free(front);
+	free(front); // memory efficiency, can also avoid this step
 	front = temp;
-	size--;
+	size--;//same when popping an element
 	return d;
 	
 }
 
+// a function to check if the traversal is safe or not
 bool safe(int i, int j, string dir){
 	if (dir == "up"){
 		if (i-1<0){
@@ -110,10 +117,13 @@ bool safe(int i, int j, string dir){
 }
 
 
+// a function to check if the neighbor is connected or not
+
 bool is_connected(int i, int j, string dir){
 	if (!safe(i, j, dir)){
 		return false;
 	}
+    //consider the question for these connections
 	if (dir == "up"){
 		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4 || mat[i][j] == 7){
 			if (mat[i-1][j] == 1 || mat[i-1][j]== 2 || mat[i-1][j] == 5 || mat[i-1][j] == 6){
@@ -146,7 +156,7 @@ bool is_connected(int i, int j, string dir){
 }
 
 void solve(){
-
+// taking inputs for the matrix and correspondingly marking the bool array as false
 	for (int i = 0; i < m; i++){
 		for (int j = 0; j < n; j++){
 			cin>>mat[i][j];
@@ -158,10 +168,11 @@ void solve(){
 
 
 	queue q;
-	
-	int count = 0;
-	q.push(x, y, L-1);
-	visited[x][y] = true;
+	//making a queue of nodes structure
+	int count = 0; // to check how many pipes can be visited
+	q.push(x, y, L-1); //  L-1 as one unit of lenth is required by the orginal position of the pipe only and we are appending the original starting element of the pipe here
+	visited[x][y] = true; //marking the first element as visited
+    // made a mistake of marking this true inside the loop, ended up fucking the whole problem completely
 	while (!q.isEmpty()){
 		node d = q.pop();
 		x = d.x;
@@ -176,7 +187,8 @@ void solve(){
 		    
     		if(is_connected(x, y, "up")&& !visited[x-1][y]){
     			q.push(x-1, y, l-1);
-    			visited[x-1][y] = true;
+    			visited[x-1][y] = true; // this step is important here, if we dont do this a particular element might be a neighbor of many pipes and it gets appended to the queue many times 
+                // resulting in multiple iterations and thus fucking up your count value totally
     		
     		}
     		if(is_connected(x, y, "down")&& !visited[x+1][y]){
