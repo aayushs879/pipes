@@ -4,6 +4,8 @@ int mat[100][20];
 int m;
 int n;
 
+
+// function to toggle cols
 void toggle(int c){
     for(int i = 0; i < m; i++){
         if(mat[i][c] ==1){
@@ -14,6 +16,8 @@ void toggle(int c){
         }
     }
 }
+
+//an exhausting function which checks the maxrows by considering all the moves
 
 void go(int col, int k , int& ans) {
     if (k %2 == 0){
@@ -39,9 +43,9 @@ void go(int col, int k , int& ans) {
         return;
     }
 
-    toggle(col);
-    go(col + 1, k-1, ans);
-    toggle(col);
+    toggle(col); // toggle the first col
+    go(col + 1, k-1, ans);// then check
+    toggle(col);// restoring the original value of the first column
     go(col + 1, k, ans);
 
 }
