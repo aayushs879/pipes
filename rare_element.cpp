@@ -25,7 +25,7 @@ int visited[4][20][20];
 int C;
 int N;
 int rare[4][2];
-
+// implementation of queue in such a manner that it stores the structure
 struct node{
     int x; 
     int y;
@@ -111,6 +111,7 @@ bool safe(int x, int y){
     return true;
 }
 
+//the below function performs the breadth first search of the matrix to find the distance of the each point in the plane from a particular rare element
 void go(int n, int x, int y){
     queue q;
     q.push(x, y);
@@ -149,6 +150,7 @@ void solve(){
 
     int overall = 1e7;
     int bigshort = -1; 
+    //the below function, for each cell , calculates the distance from each rare element and also keeps track of the bigshort
     for (int i = 0 ; i <N; i++){
         for (int j = 0; j < N; j++){
 
@@ -197,6 +199,9 @@ int main(){
         }
         solve();
     }
+
+}
+
 
 }
 
