@@ -94,22 +94,22 @@ node queue::pop(){
 // a function to check if the traversal is safe or not
 bool safe(int i, int j, string dir){
 	if (dir == "up"){
-		if (i-1<0){
+		if (i<0){
 			return false;
 		}
 	}
 	if (dir == "down"){
-		if (i +1>=m){
+		if (i >=m){
 			return false;
 		}
 	}
 	if (dir == "right"){
-		if (j + 1 >= n){
+		if (j  >= n){
 			return false;
 		}
 	}
 	if (dir == "left"){
-		if (j -1 < 0){
+		if (j  < 0){
 			return false;
 		}
 	}
@@ -117,13 +117,13 @@ bool safe(int i, int j, string dir){
 }
 
 
-// a function to check if the neighbor is connected or not
+
 
 bool is_connected(int i, int j, string dir){
 	if (!safe(i, j, dir)){
 		return false;
 	}
-    //consider the question for these connections
+    
 	if (dir == "up"){
 		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4){
 			if (mat[i-1][j] == 1 || mat[i-1][j]== 2 || mat[i-1][j] == 5 || mat[i-1][j] == 6){
