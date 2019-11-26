@@ -53,11 +53,11 @@ int main(void){
         node a;
         a.x = x1;
         a.y = y1;
-        vertices[2*i+1] = a;
+        vertices[i+1] = a;
         node b;
-        b.x = x2;
-        b.y = y2;
-        vertices[2*i+2] = b;
+        b.x = x1;
+        b.y = y1;
+        vertices[i+2] = b;
         cost[i] = c;
     }
     
@@ -68,10 +68,10 @@ int main(void){
             adj[i][j] = dist(vertices[i], vertices[j]);
             
             if ((i+2)%2 != 0){
-                adj[i][i+1] = cost[(i-1)/2];
+                adj[i][i+1] = cost[i-1];
             }
             if ((i+2)%2 == 0 && i != 0){
-                adj[i][i-1] = cost[(i-2)/2];
+                adj[i][i-1] = cost[i];
             }
             if(i == j){
                 adj[i][j] = -1;
