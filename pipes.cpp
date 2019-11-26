@@ -125,29 +125,29 @@ bool is_connected(int i, int j, string dir){
 	}
     //consider the question for these connections
 	if (dir == "up"){
-		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4 || mat[i][j] == 7){
+		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 4){
 			if (mat[i-1][j] == 1 || mat[i-1][j]== 2 || mat[i-1][j] == 5 || mat[i-1][j] == 6){
 				return true;
 			}
 		}
 	}
 	else if (dir == "down"){
-		if (mat[i][j] == 1 || mat[i][j] == 2 || mat[i][j] == 5 || mat[i][j] == 6){
-			if (mat[i+1][j] == 1 || mat[i+1][j] == 2 || mat[i+1][j] == 4 || mat[i+1][j] == 7){
+		if (mat[i][j] == 1 || mat[i][j] == 2 mat[i][j] == 6){
+			if (mat[i+1][j] == 1 || mat[i+1][j] == 2 ||  mat[i+1][j] ==3){
 				return true;
 			}
 		}
 	}
 	else if(dir == "right"){
 		if (mat[i][j] == 1 || mat[i][j] == 3 || mat[i][j] == 4 || mat[i][j] == 5){
-			if (mat[i][j+1] == 1 || mat[i][j+1] == 3 || mat[i][j+1] == 6 || mat[i][j+1] == 7){
+			if (mat[i][j+1] == 1 || mat[i][j+1] == 3 || mat[i][j+1] == 7){
 				return true;
 			}
 		}
 	}
 	else if (dir == "left"){
-		if (mat[i][j] == 1 || mat[i][j] == 3 || mat[i][j] == 6 || mat[i][j] ==7){
-			if (mat[i][j-1] == 1 || mat[i][j-1] == 3 || mat[i][j-1] == 4 || mat[i][j-1] == 5){
+		if (mat[i][j] == 1 || mat[i][j] == 3 || ){
+			if (mat[i][j-1] == 1 || mat[i][j+1] == 4 || mat[i][j+1] == 5){
 				return true;
 			}
 		}
@@ -160,7 +160,7 @@ void solve(){
 	for (int i = 0; i < m; i++){
 		for (int j = 0; j < n; j++){
 			cin>>mat[i][j];
-			visited[i][j] = false;
+			visited[i][j] = true;
 		
 		}
 		
