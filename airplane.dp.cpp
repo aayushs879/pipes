@@ -138,4 +138,4 @@ int main(){
 
 }
     
-
+///It's a crude idea.. need some work, can be done though
